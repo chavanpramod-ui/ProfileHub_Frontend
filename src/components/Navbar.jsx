@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, User, Bell, Search, MessageSquare } from 'lucide-react';
+import { Home, User, Bell, Search, MessageSquare, PlusSquare } from 'lucide-react';
 
 const Navbar = ({ onSearchClick }) => {
   const navigate = useNavigate();
@@ -19,53 +19,60 @@ const Navbar = ({ onSearchClick }) => {
   };
 
   return (
-    <nav className="fixed bottom-8 left-1/2 -translate-x-1/2 bg-slate-900/80 backdrop-blur-2xl border border-white/10 px-8 py-4 rounded-full flex items-center gap-10 shadow-2xl z-100">
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-2xl border-t border-white/10 px-4 py-3 flex items-center justify-around shadow-2xl z-50">
       
       {/* 1. Global Feed Button */}
       <button 
         onClick={() => navigate('/')} 
-        className={`transition transform active:scale-90 ${isActive('/') ? 'text-indigo-400 scale-110' : 'text-slate-400 hover:text-white'}`}
+        className={`p-2 transition transform active:scale-90 ${isActive('/') ? 'text-indigo-400' : 'text-slate-400 hover:text-white'}`}
         title="Home Feed"
       >
-        <Home size={24} />
+        <Home size={22} />
       </button>
 
       {/* 2. Search Button */}
       <button 
         onClick={onSearchClick} 
-        className="text-slate-400 hover:text-indigo-400 transition transform active:scale-90"
+        className="p-2 text-slate-400 hover:text-indigo-400 transition transform active:scale-90"
         title="Search Hubs"
       >
-        <Search size={24} />
+        <Search size={22} />
       </button>
 
-      {/* NEW: 3. Message Hub Button */}
+      {/* 3. Create Post Button */}
+      <button 
+        onClick={() => navigate('/create-post')} 
+        className={`p-2 transition transform active:scale-90 ${isActive('/create-post') ? 'text-indigo-400' : 'text-slate-400 hover:text-white'}`}
+        title="Create Post"
+      >
+        <PlusSquare size={22} />
+      </button>
+
+      {/* 4. Message Hub Button */}
       <button 
         onClick={() => navigate('/inbox')} 
-        className={`transition transform active:scale-90 ${isActive('/inbox') ? 'text-indigo-400 scale-110' : 'text-slate-400 hover:text-white'}`}
+        className={`p-2 transition transform active:scale-90 ${isActive('/inbox') ? 'text-indigo-400' : 'text-slate-400 hover:text-white'}`}
         title="Message Hub"
       >
-        <MessageSquare size={24} />
+        <MessageSquare size={22} />
       </button>
-      
-      {/* Visual Separator */}
-      <div className="w-px h-6 bg-white/10"></div>
 
-      {/* 4. Notifications Button */}
+      {/* 5. Notifications Button */}
       <button 
-        className="text-slate-400 hover:text-white transition transform active:scale-90"
+        onClick={() => navigate('/notifications')}
+        className={`p-2 transition transform active:scale-90 ${isActive('/notifications') ? 'text-indigo-400' : 'text-slate-400 hover:text-white'}`}
         title="Notifications"
       >
-        <Bell size={24} />
+        <Bell size={22} />
       </button>
 
-      {/* 5. Personal Profile Hub Button */}
+      {/* 6. Personal Profile Hub Button */}
       <button 
         onClick={handleProfileClick}
-        className={`transition transform active:scale-90 ${isActive(`/${loggedInUsername}`) ? 'text-indigo-400 scale-110' : 'text-slate-400 hover:text-white'}`}
+        className={`p-2 transition transform active:scale-90 ${isActive(`/${loggedInUsername}`) ? 'text-indigo-400' : 'text-slate-400 hover:text-white'}`}
         title="My Hub Profile"
       >
-        <User size={24} />
+        <User size={22} />
       </button>
     </nav>
   );

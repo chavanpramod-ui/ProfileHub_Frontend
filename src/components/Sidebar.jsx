@@ -39,7 +39,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="fixed top-0 left-0 h-screen w-72 bg-slate-950 border-r border-slate-800 shadow-[0_25px_60px_-30px_rgba(15,23,42,0.65)] flex flex-col z-50">
+    <aside className="hidden md:flex fixed top-0 left-0 h-screen w-72 bg-slate-950 border-r border-slate-800 shadow-[0_25px_60px_-30px_rgba(15,23,42,0.65)] flex-col z-50">
       
       {/* Brand Header */}
       <div className="p-6 border-b border-slate-900 bg-gradient-to-br from-[#0f4c81] to-[#1663b4]">
