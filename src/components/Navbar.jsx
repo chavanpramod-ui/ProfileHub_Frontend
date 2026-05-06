@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Home, User, Bell, Search, MessageSquare, PlusSquare } from 'lucide-react';
 
-const Navbar = ({ onSearchClick }) => {
+const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   
@@ -32,7 +32,7 @@ const Navbar = ({ onSearchClick }) => {
 
       {/* 2. Search Button */}
       <button 
-        onClick={onSearchClick} 
+        onClick={() => navigate('/search')} 
         className="p-2 text-slate-400 hover:text-indigo-400 transition transform active:scale-90"
         title="Search Hubs"
       >

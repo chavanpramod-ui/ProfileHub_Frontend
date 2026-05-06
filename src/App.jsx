@@ -19,7 +19,6 @@ const ProtectedRoute = ({ children, isAuthenticated }) => {
 
 const AppLayout = ({ children }) => {
   const location = useLocation();
-  const [showSearch, setShowSearch] = useState(false);
   
   // Hide sidebar on auth pages
   const hideSidebarRoutes = ['/login', '/register'];
@@ -38,7 +37,7 @@ const AppLayout = ({ children }) => {
       
       {/* Mobile Bottom Navigation - hidden on desktop */}
       {shouldShowSidebar && <div className="md:hidden fixed bottom-0 left-0 right-0 z-50">
-        <Navbar onSearchClick={() => setShowSearch(true)} />
+        <Navbar />
       </div>}
     </div>
   );
