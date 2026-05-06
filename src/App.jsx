@@ -12,6 +12,11 @@ import Messages from './pages/Messages';
 import Notifications from './pages/Notifications';
 import { useState } from 'react';
 
+// Protected Route Component
+const ProtectedRoute = ({ children, isAuthenticated }) => {
+  return isAuthenticated ? children : <Navigate to="/login" replace />;
+};
+
 const AppLayout = ({ children }) => {
   const location = useLocation();
   const [showSearch, setShowSearch] = useState(false);
@@ -46,15 +51,20 @@ function App() {
     <Router>
       <AppLayout>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/create-post" element={<CreatePost />} />
-          <Route path="/search" element={<SearchPage />} />
-          <Route path="/inbox" element={<Messages />} />
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="/:username" element={<Profile />} />
-          <Route path="/dashboard" element={<Navigate to="/" />} />
+          {/* Auth Routes - redirect to home if already logged in */}
+          <Route path="/login" element={isAuthenticated ? <Navigate to="/" replace /> : <Login />} />
+          <Route path="/register" element={isAuthenticated ? <Navigate to="/" replace /> : <Register />} />
+          
+          {/* Protected Routes - require authentication */}
+          <Route path="/" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Home /></ProtectedRoute>} />
+          <Route path="/create-post" element={<ProtectedRoute isAuthenticated={isAuthenticated}><CreatePost /></ProtectedRoute>} />
+          <Route path="/search" element={<ProtectedRoute isAuthenticated={isAuthenticated}><SearchPage /></ProtectedRoute>} />
+          <Route path="/inbox" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Messages /></ProtectedRoute>} />
+          <Route path="/notifications" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Notifications /></ProtectedRoute>} />
+          <Route path="/:username" element={<ProtectedRoute isAuthenticated={isAuthenticated}><Profile /></ProtectedRoute>} />
+          <Route path="/dashboard" element={<Navigate to="/" replace />} />
+          
+          {/* 404 Page */}
           <Route path="*" element={
             <div className="h-screen flex items-center justify-center px-4 text-slate-500 font-black uppercase tracking-widest text-center">
               Hub Not Found
