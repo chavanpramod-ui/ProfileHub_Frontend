@@ -31,7 +31,7 @@ const ProfileHeader = ({ user, onEditLinks, onEditProfile, onFollow, onViewFollo
                 {previewUrl ? (
                   <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
                 ) : user.profilePicture ? (
-                  <img src={`http://localhost:5000/${user.profilePicture}`} alt="Profile" className="w-full h-full object-cover" />
+                  <img src={`${import.meta.env.VITE_API_URL}/${user.profilePicture}`} alt="Profile" className="w-full h-full object-cover" />
                 ) : (
                   user.displayName?.charAt(0) || user.username?.charAt(0)
                 )}

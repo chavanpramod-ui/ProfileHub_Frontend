@@ -17,7 +17,7 @@ const PostActions = ({ post }) => {
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/users/${post.author.id}/post/${post._id}/like`,
+        `${import.meta.env.VITE_API_URL}/api/users/${post.author.id}/post/${post._id}/like`,
         { currentUsername, currentUserId }
       );
       setLiked(!liked);
@@ -38,7 +38,7 @@ const PostActions = ({ post }) => {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/users/${post.author.id}/post/${post._id}/comment`,
+        `${import.meta.env.VITE_API_URL}/api/users/${post.author.id}/post/${post._id}/comment`,
         {
           authorUsername: currentUsername,
           authorDisplayName: currentDisplayName || currentUsername,
@@ -62,7 +62,7 @@ const PostActions = ({ post }) => {
 
     try {
       await axios.post(
-        `http://localhost:5000/api/users/${post.author.id}/post/${post._id}/share`,
+        `${import.meta.env.VITE_API_URL}/api/users/${post.author.id}/post/${post._id}/share`,
         {
           currentUserId,
           currentUsername,

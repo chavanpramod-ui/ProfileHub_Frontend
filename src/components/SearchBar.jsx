@@ -12,7 +12,7 @@ const SearchBar = () => {
   useEffect(() => {
     const fetchSuggestions = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/users/suggestions');
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/suggestions`);
         setSuggestions(res.data);
       } catch (err) {
         console.error("Failed to fetch suggestions", err);
@@ -30,7 +30,7 @@ const SearchBar = () => {
 
       setIsSearching(true);
       try {
-        const res = await axios.get(`http://localhost:5000/api/users/search?q=${encodeURIComponent(query.trim())}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/search?q=${encodeURIComponent(query.trim())}`);
         setSuggestions(res.data);
       } catch (err) {
         console.error("Search failed", err);
@@ -89,7 +89,7 @@ const SearchBar = () => {
                     <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-200 flex items-center justify-center shrink-0 border border-slate-200">
                       {hasImage ? (
                         <img 
-                          src={imageSource.startsWith('http') ? imageSource : `http://localhost:5000/${imageSource}`} 
+                          src={imageSource.startsWith('http') ? imageSource : `${import.meta.env.VITE_API_URL}/${imageSource}`} 
                           alt={user.username}
                           className="w-full h-full object-cover"
                           onError={(e) => {

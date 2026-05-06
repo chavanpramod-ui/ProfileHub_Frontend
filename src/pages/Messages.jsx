@@ -156,7 +156,7 @@ const Messages = () => {
                     <div className="w-12 h-12 rounded-full bg-[#e5e7eb] flex items-center justify-center overflow-hidden text-white text-sm font-bold">
                       {contact.profilePicture ? (
                         <img
-                          src={contact.profilePicture.startsWith('http') ? contact.profilePicture : `http://localhost:5000/${contact.profilePicture}`}
+                          src={contact.profilePicture.startsWith('http') ? contact.profilePicture : `${import.meta.env.VITE_API_URL}/${contact.profilePicture}`}
                           alt={contact.displayName || contact.username}
                           className="w-full h-full object-cover"
                         />

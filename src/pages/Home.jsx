@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import AchievementPost from '../components/AchievementPost';
 import PostActions from '../components/PostActions'; 
 import { Loader2, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import BrandLogo from '../components/BrandLogo';
+import { API } from '../services/api';
 
 const Home = () => {
   const [feed, setFeed] = useState([]);
@@ -15,7 +15,7 @@ const Home = () => {
   useEffect(() => {
     const fetchFeed = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/users/achievements/feed');
+        const res = await API.get('/users/achievements/feed');
         console.log('🔍 Feed API Response count:', res.data?.length);
         if (res.data && res.data.length > 0) {
           res.data.forEach((post, idx) => {
@@ -43,7 +43,7 @@ const Home = () => {
       console.log(`  → Returning NULL (src is empty)`);
       return null;
     }
-    const result = src.startsWith('http') ? src : `http://localhost:5000/${src}`;
+    const result = src.startsWith('http') ? src : `${import.meta.env.VITE_API_URL}/${src}`;
     console.log(`  → Returning: "${result}"`);
     return result;
   };

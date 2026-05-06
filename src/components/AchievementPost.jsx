@@ -51,7 +51,7 @@ const AchievementPost = ({ post, isOwner, onEdit, onDelete, compact = false }) =
       {post.image && (
         <div className={compact ? 'mt-4 rounded-2xl overflow-hidden border border-slate-200 bg-[#f8fafc] shadow-sm' : 'mt-5 rounded-xl overflow-hidden border border-slate-200 bg-[#f8fafc] shadow-sm flex items-center justify-center'}>
           <img 
-            src={post.image.startsWith('http') ? post.image : `http://localhost:5000/${post.image}`} 
+            src={post.image.startsWith('http') ? post.image : `${import.meta.env.VITE_API_URL}/${post.image}`} 
             alt={post.title} 
             className="w-full max-h-72 object-contain hover:scale-[1.02] transition-transform duration-500"
             onError={(e) => {

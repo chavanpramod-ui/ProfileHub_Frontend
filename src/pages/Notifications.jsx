@@ -15,7 +15,7 @@ const Notifications = () => {
     const fetchNotifications = async () => {
       try {
         // Fetch the user's profile to get their notifications array
-        const res = await axios.get(`http://localhost:5000/api/users/profile/${currentUsername}`);
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/profile/${currentUsername}`);
         
         // Reverse them so the newest notifications are at the top
         const reversedAlerts = (res.data.notifications || []).reverse();
@@ -23,7 +23,7 @@ const Notifications = () => {
         
         // Automatically tell the backend to mark them all as "read"
         if (reversedAlerts.some(n => !n.isRead)) {
-          await axios.put(`http://localhost:5000/api/users/${currentUserId}/notifications/read`);
+          await axios.put(`${import.meta.env.VITE_API_URL}/api/users/${currentUserId}/notifications/read`);
         }
       } catch (err) {
         console.error("Failed to load notifications", err);

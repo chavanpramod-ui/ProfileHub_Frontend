@@ -3,7 +3,7 @@ import { Send, X, User } from 'lucide-react';
 import { io } from 'socket.io-client';
 import { sendMessage, fetchMessages } from '../services/api';
 
-const socket = io('http://localhost:5000');
+const socket = io(import.meta.env.VITE_API_URL);
 
 const ChatBox = ({ conversationId, currentUser, recipient, onClose }) => {
   const [messages, setMessages] = useState([]);
@@ -12,7 +12,7 @@ const ChatBox = ({ conversationId, currentUser, recipient, onClose }) => {
 
   const avatarUrl = (user) => {
     const src = user?.profilePicture || user?.avatar;
-    return src ? (src.startsWith('http') ? src : `http://localhost:5000/${src}`) : null;
+    return src ? (src.startsWith('http') ? src : `${import.meta.env.VITE_API_URL}/${src}`) : null;
   };
 
   useEffect(() => {

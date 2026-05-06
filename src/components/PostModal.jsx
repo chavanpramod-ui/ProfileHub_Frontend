@@ -20,7 +20,7 @@ const PostModal = ({ isOpen, onClose, userId, editData }) => {
       });
       // Handle existing image preview
       if (editData.image) {
-        setPreview(editData.image.startsWith('http') ? editData.image : `http://localhost:5000/${editData.image}`);
+        setPreview(editData.image.startsWith('http') ? editData.image : `${import.meta.env.VITE_API_URL}/${editData.image}`);
       }
     } else {
       setFormData({ title: '', content: '' });
@@ -54,7 +54,7 @@ const PostModal = ({ isOpen, onClose, userId, editData }) => {
           uploadData.append('image', file);
         }
 
-        await axios.post('http://localhost:5000/api/users/create-post', uploadData, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/users/create-post`, uploadData, {
           headers: {
             'Content-Type': 'multipart/form-data',
             'Authorization': `Bearer ${localStorage.getItem('token')}`

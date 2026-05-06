@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Add /api to the end of your baseURL
-const API = axios.create({ baseURL: 'http://localhost:5000/api' });
+const API = axios.create({ baseURL: `${import.meta.env.VITE_API_URL}/api` });
 
 // Add token to headers for protected routes
 API.interceptors.request.use((req) => {
@@ -18,6 +18,7 @@ export const deleteAchievement = (userId, postId) => API.delete(`/posts/${userId
 export const updateAchievement = (userId, postId, data) => API.put(`/posts/${userId}/${postId}`, data);
 
 // User Profile
+export { API };
 export const fetchProfile = (username) => API.get(`/users/profile/${username}`);
 export const loginUser = (formData) => API.post('/users/login', formData);
 export const registerUser = (formData) => API.post('/users/register', formData);

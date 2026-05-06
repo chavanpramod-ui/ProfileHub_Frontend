@@ -32,7 +32,7 @@ const EditProfileModal = ({ isOpen, onClose, user, onUpdate }) => {
     try {
       // 1. Send updated data to your MERN backend
       // Using the dynamic userId from the logged-in session
-      const res = await axios.put(`http://localhost:5000/api/users/update/${user._id}`, formData);
+      const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/users/update/${user._id}`, formData);
       
       // 2. Refresh the UI in Profile.jsx with the new data
       onUpdate(res.data); 

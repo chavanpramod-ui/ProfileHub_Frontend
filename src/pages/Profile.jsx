@@ -91,7 +91,7 @@ const Profile = () => {
       const formData = new FormData();
       formData.append('profilePicture', selectedFile);
 
-      const res = await axios.post(`http://localhost:5000/api/users/${user.username}/upload-picture`, formData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/${user.username}/upload-picture`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -134,7 +134,7 @@ const Profile = () => {
       const formData = new FormData();
       formData.append('resume', selectedResume);
 
-      const res = await axios.post(`http://localhost:5000/api/users/${user.username}/upload-resume`, formData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/${user.username}/upload-resume`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -158,7 +158,7 @@ const Profile = () => {
     if (!window.confirm("Are you sure you want to delete this milestone?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/users/${user._id}/delete-post/${postId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/users/${user._id}/delete-post/${postId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
 
@@ -183,7 +183,7 @@ const Profile = () => {
     setIsFollowing(!wasFollowing); // Optimistic UI update
 
     try {
-      const res = await axios.put(`http://localhost:5000/api/users/follow/${user._id}`, {
+      const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/users/follow/${user._id}`, {
         currentUserId: currentUser._id
       });
       
@@ -203,7 +203,7 @@ const Profile = () => {
 
   const handleOpenFollowers = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/users/followers/${user._id}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/followers/${user._id}`);
       setFollowersList(res.data);
       setIsFollowersModalOpen(true);
     } catch (err) {
@@ -219,7 +219,7 @@ const Profile = () => {
   const fetchGithub = async (url) => {
     const handle = extractHandle(url);
     try {
-      const res = await axios.get(`http://localhost:5000/api/users/stats/github/${handle}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/stats/github/${handle}`);
       setGhStats({ repos: res.data.repos, followers: res.data.followers });
     } catch (e) {
       setGhStats({ repos: 'N/A', followers: 'N/A' });
@@ -229,7 +229,7 @@ const Profile = () => {
   const fetchLeetCode = async (url) => {
     const handle = extractHandle(url);
     try {
-      const res = await axios.get(`http://localhost:5000/api/users/stats/leetcode/${handle}`);
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/stats/leetcode/${handle}`);
       setLcStats({ solved: res.data.solved, rank: res.data.rank });
     } catch (e) {
       setLcStats({ solved: 'N/A', rank: 'N/A' });
@@ -412,7 +412,7 @@ const Profile = () => {
               {user.resume ? (
                 <div className="relative h-87.5 bg-white">
                   <iframe
-                    src={`http://localhost:5000/${user.resume}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                    src={`${import.meta.env.VITE_API_URL}/${user.resume}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                     title="Resume Preview"
                     className="h-full w-full"
                   />
