@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios'; // <-- Imported axios
 import AchievementPost from '../components/AchievementPost';
 import PostActions from '../components/PostActions'; 
 import { Loader2, Search } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import BrandLogo from '../components/BrandLogo';
-import { API } from '../services/api';
 
 const Home = () => {
   const [feed, setFeed] = useState([]);
@@ -15,13 +15,8 @@ const Home = () => {
   useEffect(() => {
     const fetchFeed = async () => {
       try {
-        const res = await API.get('/users/achievements/feed');
-        console.log('🔍 Feed API Response count:', res.data?.length);
-        if (res.data && res.data.length > 0) {
-          res.data.forEach((post, idx) => {
-            console.log(`Post ${idx}: author.username="${post.author?.username}", profilePicture="${post.author?.profilePicture}"`);
-          });
-        }
+        // <-- CRITICAL FIX: Direct axios relative path
+        const res = await axios.get('/api/users/achievements/feed');
         setFeed(res.data);
       } catch (err) {
         console.error("Feed error:", err);
@@ -33,19 +28,13 @@ const Home = () => {
   }, []);
 
   const profileImageUrl = (author) => {
-    if (!author) {
-      console.warn('profileImageUrl: No author object provided');
-      return null;
-    }
+    if (!author) return null;
     const src = author?.profilePicture || author?.avatar;
-    console.log(`profileImageUrl(${author.username}): src="${src}"`);
-    if (!src || src.trim() === '') {
-      console.log(`  → Returning NULL (src is empty)`);
-      return null;
-    }
-    const result = src.startsWith('http') ? src : `${import.meta.env.VITE_API_URL}/${src}`;
-    console.log(`  → Returning: "${result}"`);
-    return result;
+    if (!src || src.trim() === '') return null;
+    
+    // <-- CRITICAL FIX: Uses the global base URL from main.jsx instead of env variable
+    const baseUrl = axios.defaults.baseURL || 'http://localhost:5000';
+    return src.startsWith('http') ? src : `${baseUrl}/${src}`;
   };
 
   const filteredFeed = feed.filter((post) => {
@@ -109,9 +98,7 @@ const Home = () => {
                         alt={post.author.displayName || post.author.username}
                         className="w-10 h-10 rounded-full object-cover border border-sky-200"
                         onError={(e) => {
-                          console.error(`❌ Image failed to load: ${e.target.src}`);
                           e.target.style.display = 'none';
-                          // Shows a fallback icon if image fails to load
                           e.target.outerHTML = `<div class="w-10 h-10 bg-sky-600 rounded-full flex items-center justify-center text-white font-bold uppercase">${post.author.username.charAt(0)}</div>`;
                         }}
                       />

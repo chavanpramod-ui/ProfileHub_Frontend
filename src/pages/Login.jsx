@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { loginUser } from '../services/api';
+import axios from 'axios'; // <-- Imported axios
 import { LogIn, Mail, Lock } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
 
@@ -9,27 +9,26 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // client/src/pages/Login.jsx
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      // <-- CRITICAL FIX: Direct axios call so it respects main.jsx baseURL
+      const { data } = await axios.post('/api/users/login', formData);
+      
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('userId', data.userId); 
+      localStorage.setItem('username', data.username); 
+      
+      navigate(`/${data.username}`);
+    } catch (err) {
+      alert("Login failed. Please check your credentials.");
+      setLoading(false);
+    }
+  };
 
-const handleLogin = async (e) => {
-  e.preventDefault();
-  setLoading(true);
-  try {
-    const { data } = await loginUser(formData);
-    
-    // CHANGE THIS LINE: use data.userId to match your backend
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('userId', data.userId); // Corrected from data.user._id
-    localStorage.setItem('username', data.username); 
-    
-    navigate(`/${data.username}`);
-  } catch (err) {
-    // ... rest of your code
-  }
-};
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-sky-100 via-sky-50 to-blue-50 p-3 md:p-6 relative overflow-hidden">
-      {/* Decorative Background Orbs */}
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-sky-300/30 blur-[120px] rounded-full" />
       <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-300/25 blur-[120px] rounded-full" />
 

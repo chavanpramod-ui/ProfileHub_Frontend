@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { registerUser } from '../services/api';
+import axios from 'axios'; // <-- Imported axios
 import { UserPlus, Mail, Lock, User } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
 
@@ -11,9 +11,14 @@ const Register = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await registerUser(formData);
+      // <-- CRITICAL FIX: Direct axios call so it respects main.jsx baseURL
+      const { data } = await axios.post('/api/users/register', formData);
+      
       localStorage.setItem('token', data.token);
-      navigate(`/${formData.username}`); // Redirect to their new profile hub
+      localStorage.setItem('userId', data.userId);
+      localStorage.setItem('username', data.username);
+      
+      navigate(`/${formData.username}`); 
     } catch (err) {
       alert("Registration failed. Try a different username.");
     }

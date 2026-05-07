@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { fetchProfile } from '../services/api';
+import axios from 'axios'; 
 import ProfileHeader from '../components/ProfileHeader';
 import StatsCard from '../components/StatsCard';
 import AchievementPost from '../components/AchievementPost';
@@ -52,13 +51,13 @@ const Profile = () => {
   useEffect(() => {
     if (username) {
       setLoading(true);
-      fetchProfile(username)
+      // <-- CRITICAL FIX: Replaced fetchProfile with direct axios.get
+      axios.get(`/api/users/profile/${username}`)
         .then(res => {
           setUser(res.data);
           setLoading(false);
           setShowSearch(false);
           
-          // Check if current user is following (Safely matching ObjectIds to strings)
           if (currentUser._id && res.data.followers) {
             setIsFollowing(res.data.followers.some(id => id.toString() === currentUser._id));
           }
@@ -91,7 +90,8 @@ const Profile = () => {
       const formData = new FormData();
       formData.append('profilePicture', selectedFile);
 
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/${user.username}/upload-picture`, formData, {
+      // <-- CRITICAL FIX: Removed import.meta.env
+      const res = await axios.post(`/api/users/${user.username}/upload-picture`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -134,7 +134,8 @@ const Profile = () => {
       const formData = new FormData();
       formData.append('resume', selectedResume);
 
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/${user.username}/upload-resume`, formData, {
+      // <-- CRITICAL FIX: Removed import.meta.env
+      const res = await axios.post(`/api/users/${user.username}/upload-resume`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -158,7 +159,8 @@ const Profile = () => {
     if (!window.confirm("Are you sure you want to delete this milestone?")) return;
 
     try {
-      await axios.delete(`${import.meta.env.VITE_API_URL}/api/users/${user._id}/delete-post/${postId}`, {
+      // <-- CRITICAL FIX: Removed import.meta.env
+      await axios.delete(`/api/users/${user._id}/delete-post/${postId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
 
@@ -172,7 +174,6 @@ const Profile = () => {
     }
   };
 
-  // --- CRITICAL FIX: Direct Axios call for following ---
   const handleFollowToggle = async () => {
     if (!currentUser._id) {
       alert("Please login to follow friends!");
@@ -180,10 +181,11 @@ const Profile = () => {
     }
 
     const wasFollowing = isFollowing;
-    setIsFollowing(!wasFollowing); // Optimistic UI update
+    setIsFollowing(!wasFollowing); 
 
     try {
-      const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/users/follow/${user._id}`, {
+      // <-- CRITICAL FIX: Removed import.meta.env
+      const res = await axios.put(`/api/users/follow/${user._id}`, {
         currentUserId: currentUser._id
       });
       
@@ -196,14 +198,15 @@ const Profile = () => {
       }));
     } catch (err) {
       console.error("Follow failed", err);
-      setIsFollowing(wasFollowing); // Revert on failure
+      setIsFollowing(wasFollowing); 
       alert("Failed to follow user. Please try again.");
     }
   };
 
   const handleOpenFollowers = async () => {
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/followers/${user._id}`);
+      // <-- CRITICAL FIX: Removed import.meta.env
+      const res = await axios.get(`/api/users/followers/${user._id}`);
       setFollowersList(res.data);
       setIsFollowersModalOpen(true);
     } catch (err) {
@@ -219,7 +222,8 @@ const Profile = () => {
   const fetchGithub = async (url) => {
     const handle = extractHandle(url);
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/stats/github/${handle}`);
+      // <-- CRITICAL FIX: Removed import.meta.env
+      const res = await axios.get(`/api/users/stats/github/${handle}`);
       setGhStats({ repos: res.data.repos, followers: res.data.followers });
     } catch (e) {
       setGhStats({ repos: 'N/A', followers: 'N/A' });
@@ -229,7 +233,8 @@ const Profile = () => {
   const fetchLeetCode = async (url) => {
     const handle = extractHandle(url);
     try {
-      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/stats/leetcode/${handle}`);
+      // <-- CRITICAL FIX: Removed import.meta.env
+      const res = await axios.get(`/api/users/stats/leetcode/${handle}`);
       setLcStats({ solved: res.data.solved, rank: res.data.rank });
     } catch (e) {
       setLcStats({ solved: 'N/A', rank: 'N/A' });
@@ -412,7 +417,8 @@ const Profile = () => {
               {user.resume ? (
                 <div className="relative h-87.5 bg-white">
                   <iframe
-                    src={`${import.meta.env.VITE_API_URL}/${user.resume}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
+                    // <-- CRITICAL FIX: Base URL for Resume Iframe
+                    src={`${axios.defaults.baseURL || 'http://localhost:5000'}/${user.resume}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
                     title="Resume Preview"
                     className="h-full w-full"
                   />
