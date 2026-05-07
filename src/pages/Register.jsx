@@ -1,24 +1,24 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios'; // <-- Imported axios
+import axios from 'axios'; 
 import { UserPlus, Mail, Lock, User } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
 
 const Register = () => {
   const [formData, setFormData] = useState({ username: '', email: '', password: '' });
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Kept just in case you use it elsewhere later
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      // <-- CRITICAL FIX: Direct axios call so it respects main.jsx baseURL
       const { data } = await axios.post('/api/users/register', formData);
       
       localStorage.setItem('token', data.token);
       localStorage.setItem('userId', data.userId);
       localStorage.setItem('username', data.username);
       
-      navigate(`/${formData.username}`); 
+      // --- CRITICAL FIX: Hard redirect to clear stale state ---
+      window.location.href = `/${formData.username}`; 
     } catch (err) {
       alert("Registration failed. Try a different username.");
     }

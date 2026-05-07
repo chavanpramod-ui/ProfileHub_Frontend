@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios'; // <-- Imported axios
+import axios from 'axios'; 
 import { LogIn, Mail, Lock } from 'lucide-react';
 import BrandLogo from '../components/BrandLogo';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Kept just in case you use it elsewhere later
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      // <-- CRITICAL FIX: Direct axios call so it respects main.jsx baseURL
       const { data } = await axios.post('/api/users/login', formData);
       
       localStorage.setItem('token', data.token);
       localStorage.setItem('userId', data.userId); 
       localStorage.setItem('username', data.username); 
       
-      navigate(`/${data.username}`);
+      // --- CRITICAL FIX: Hard redirect to clear stale state ---
+      window.location.href = `/${data.username}`;
     } catch (err) {
       alert("Login failed. Please check your credentials.");
       setLoading(false);
