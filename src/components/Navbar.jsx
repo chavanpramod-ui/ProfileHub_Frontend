@@ -1,80 +1,66 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Home, User, Bell, Search, MessageSquare, PlusSquare } from 'lucide-react';
+import { Home, Search, PlusSquare, Bell, User, LogOut } from 'lucide-react';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  
-  const loggedInUsername = localStorage.getItem('username');
+  const currentUsername = localStorage.getItem('username');
 
-  const isActive = (path) => location.pathname === path;
-
-  const handleProfileClick = () => {
-    if (loggedInUsername) {
-      navigate(`/${loggedInUsername}`);
-    } else {
-      navigate('/login');
-    }
+  // --- CRITICAL: LOGOUT LOGIC ---
+  const handleLogout = () => {
+    // 1. Clear all saved user data from the phone
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
+    
+    // 2. Send them back to the login screen
+    navigate('/login');
   };
 
+  // Define the main navigation buttons
+  const navItems = [
+    { path: '/', icon: Home, label: 'Home' },
+    { path: '/search', icon: Search, label: 'Search' },
+    { path: '/create-post', icon: PlusSquare, label: 'Post' },
+    { path: '/notifications', icon: Bell, label: 'Alerts' },
+    { path: `/${currentUsername}`, icon: User, label: 'Profile' },
+  ];
+
   return (
-    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-2xl border-t border-white/10 px-4 py-3 flex items-center justify-around shadow-2xl z-50">
+    <div className="bg-white/95 backdrop-blur-xl border-t border-slate-200 px-4 py-3 flex items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.05)] pb-safe">
       
-      {/* 1. Global Feed Button */}
-      <button 
-        onClick={() => navigate('/')} 
-        className={`p-2 transition transform active:scale-90 ${isActive('/') ? 'text-indigo-400' : 'text-slate-400 hover:text-white'}`}
-        title="Home Feed"
+      {/* Map through the standard navigation items */}
+      {navItems.map((item) => {
+        const Icon = item.icon;
+        // Check if this button matches the page we are currently on
+        const isActive = location.pathname === item.path;
+        
+        return (
+          <button
+            key={item.label}
+            onClick={() => navigate(item.path)}
+            className={`flex flex-col items-center p-2 transition-colors ${
+              isActive ? 'text-sky-600' : 'text-slate-400 hover:text-sky-500'
+            }`}
+          >
+            <Icon size={24} strokeWidth={isActive ? 2.5 : 2} />
+          </button>
+        );
+      })}
+      
+      {/* --- NEW: MOBILE LOGOUT BUTTON --- */}
+      <div className="w-[1px] h-6 bg-slate-200 mx-1"></div> {/* Separator Line */}
+      
+      <button
+        onClick={handleLogout}
+        className="flex flex-col items-center p-2 text-red-400 hover:text-red-600 transition-colors"
+        title="Logout"
       >
-        <Home size={22} />
+        <LogOut size={24} strokeWidth={2.5} />
       </button>
 
-      {/* 2. Search Button */}
-      <button 
-        onClick={() => navigate('/search')} 
-        className="p-2 text-slate-400 hover:text-indigo-400 transition transform active:scale-90"
-        title="Search Hubs"
-      >
-        <Search size={22} />
-      </button>
-
-      {/* 3. Create Post Button */}
-      <button 
-        onClick={() => navigate('/create-post')} 
-        className={`p-2 transition transform active:scale-90 ${isActive('/create-post') ? 'text-indigo-400' : 'text-slate-400 hover:text-white'}`}
-        title="Create Post"
-      >
-        <PlusSquare size={22} />
-      </button>
-
-      {/* 4. Message Hub Button */}
-      <button 
-        onClick={() => navigate('/inbox')} 
-        className={`p-2 transition transform active:scale-90 ${isActive('/inbox') ? 'text-indigo-400' : 'text-slate-400 hover:text-white'}`}
-        title="Message Hub"
-      >
-        <MessageSquare size={22} />
-      </button>
-
-      {/* 5. Notifications Button */}
-      <button 
-        onClick={() => navigate('/notifications')}
-        className={`p-2 transition transform active:scale-90 ${isActive('/notifications') ? 'text-indigo-400' : 'text-slate-400 hover:text-white'}`}
-        title="Notifications"
-      >
-        <Bell size={22} />
-      </button>
-
-      {/* 6. Personal Profile Hub Button */}
-      <button 
-        onClick={handleProfileClick}
-        className={`p-2 transition transform active:scale-90 ${isActive(`/${loggedInUsername}`) ? 'text-indigo-400' : 'text-slate-400 hover:text-white'}`}
-        title="My Hub Profile"
-      >
-        <User size={22} />
-      </button>
-    </nav>
+    </div>
   );
 };
 
