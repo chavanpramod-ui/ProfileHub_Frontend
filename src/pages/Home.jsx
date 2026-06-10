@@ -45,25 +45,25 @@ const Home = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-100 via-sky-50 to-slate-50 text-slate-900 pb-10">
-      <header className="sticky top-0 z-40 bg-white/95 border-b border-sky-200 px-3 md:px-4 py-3 shadow-[0_10px_30px_-20px_rgba(15,23,42,0.12)] backdrop-blur-xl">
+    <div className="min-h-screen bg-gradient-to-br from-sky-100 via-sky-50 to-slate-50 text-charcoal pb-10">
+      <header className="sticky top-0 z-40 bg-cool-gray/95 border-b border-sky-200 px-3 md:px-4 py-3 shadow-[0_10px_30px_-20px_rgba(15,23,42,0.12)] backdrop-blur-xl">
         <div className="flex items-center gap-2 md:gap-8">
           <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="bg-white p-1 md:p-1.5 rounded-lg shadow-sm">
+            <div className="bg-cool-gray p-1 md:p-1.5 rounded-lg shadow-sm">
               <BrandLogo label={false} />
             </div>
-            <h1 className="text-base md:text-xl font-bold tracking-tight text-slate-900 whitespace-nowrap">
+            <h1 className="text-base md:text-xl font-bold tracking-tight text-charcoal whitespace-nowrap">
               Global Feed
             </h1>
           </div>
 
           <div className="relative flex-1">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-4 md:h-5 w-4 md:w-5 text-gray-400" />
+              <Search className="h-4 md:h-5 w-4 md:w-5 text-slate-muted" />
             </div>
             <input
               type="text"
-              className="block w-full pl-9 md:pl-10 pr-3 md:pr-4 py-2 md:py-2.5 text-sm md:text-base border border-slate-200 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:bg-white focus:border-sky-400 focus:ring-1 focus:ring-sky-200 transition-all duration-200"
+              className="block w-full pl-9 md:pl-10 pr-3 md:pr-4 py-2 md:py-2.5 text-sm md:text-base border border-softgray rounded-xl leading-5 bg-cool-gray placeholder-gray-500 focus:outline-none focus:bg-cool-gray focus:border-sky-400 focus:ring-1 focus:ring-sky-200 transition-all duration-200"
               placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -74,8 +74,8 @@ const Home = () => {
 
       <main className="max-w-4xl mx-auto px-3 md:px-4 mt-4 md:mt-6">
         <div className="mb-4 md:mb-6">
-          <h2 className="text-2xl md:text-3xl font-bold text-slate-900">Discover Professional Milestones</h2>
-          <p className="text-slate-500 text-xs md:text-sm mt-1 font-medium">Trending updates from the developer community.</p>
+          <h2 className="text-2xl md:text-3xl font-bold text-charcoal">Discover Professional Milestones</h2>
+          <p className="text-slate-muted text-xs md:text-sm mt-1 font-medium">Trending updates from the developer community.</p>
         </div>
 
         {loading ? (
@@ -86,7 +86,7 @@ const Home = () => {
         ) : filteredFeed.length > 0 ? (
           <div className="space-y-4">
             {filteredFeed.map((post) => (
-              <div key={post._id} className="bg-white rounded-[1.75rem] border border-sky-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-200">
+              <div key={post._id} className="bg-cool-gray rounded-[1.75rem] border border-sky-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-200">
                 <div className="p-5">
                   <div 
                     className="flex items-center gap-3 mb-4 cursor-pointer group w-fit"
@@ -108,10 +108,10 @@ const Home = () => {
                       </div>
                     )}
                     <div>
-                      <h4 className="font-semibold text-slate-900 group-hover:text-sky-700 transition-colors">
+                      <h4 className="font-semibold text-charcoal group-hover:text-sky-700 transition-colors">
                         {post.author.displayName || post.author.username}
                       </h4>
-                      <p className="text-[10px] text-gray-400 font-semibold uppercase tracking-widest">
+                      <p className="text-[10px] text-slate-muted font-semibold uppercase tracking-widest">
                         Visit Hub Profile
                       </p>
                     </div>
@@ -125,7 +125,7 @@ const Home = () => {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 text-slate-500 font-medium bg-white rounded-xl border border-sky-200 shadow-sm">
+          <div className="text-center py-20 text-slate-muted font-medium bg-cool-gray rounded-xl border border-sky-200 shadow-sm">
             No milestones found matching "{searchQuery}".
           </div>
         )}

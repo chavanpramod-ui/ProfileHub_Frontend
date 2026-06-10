@@ -245,14 +245,14 @@ const Profile = () => {
   if (error || !user) return <div className="h-screen bg-gradient-to-br from-sky-100 via-sky-50 to-slate-50 flex items-center justify-center text-red-600 text-xl font-bold uppercase">Hub not found</div>;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-sky-100 via-sky-50 to-slate-50 text-slate-900 pb-32 overflow-x-hidden relative">
+    <div className="min-h-screen bg-gradient-to-br from-sky-100 via-sky-50 to-slate-50 text-charcoal pb-32 overflow-x-hidden relative">
       
       {showSearch && (
-        <div className="fixed inset-0 bg-white/95 backdrop-blur-sm z-200 flex flex-col pt-20 animate-in fade-in zoom-in duration-300">
+        <div className="fixed inset-0 bg-cool-gray/95 backdrop-blur-sm z-200 flex flex-col pt-20 animate-in fade-in zoom-in duration-300">
           <div className="max-w-2xl mx-auto w-full px-6">
             <div className="flex justify-between items-center mb-8">
-              <h2 className="text-2xl font-bold text-slate-900 tracking-tight">Search Network</h2>
-              <button onClick={() => setShowSearch(false)} className="p-3 bg-slate-100 rounded-full text-slate-500 hover:text-slate-900 transition border border-slate-200">
+              <h2 className="text-2xl font-bold text-charcoal tracking-tight">Search Network</h2>
+              <button onClick={() => setShowSearch(false)} className="p-3 bg-cool-gray rounded-full text-slate-muted hover:text-charcoal transition border border-softgray">
                 <X size={20} />
               </button>
             </div>
@@ -277,8 +277,8 @@ const Profile = () => {
           />
 
           {selectedFile && (
-            <div className="mt-4 flex justify-center gap-3 bg-white p-4 rounded-xl border border-sky-200 shadow-sm animate-in fade-in slide-in-from-top-4">
-              <p className="text-slate-600 font-medium flex items-center mr-4">Save new profile picture?</p>
+            <div className="mt-4 flex justify-center gap-3 bg-cool-gray p-4 rounded-xl border border-sky-200 shadow-sm animate-in fade-in slide-in-from-top-4">
+              <p className="text-slate-muted font-medium flex items-center mr-4">Save new profile picture?</p>
               <button
                 onClick={handleUploadProfilePicture}
                 disabled={isUploading}
@@ -295,7 +295,7 @@ const Profile = () => {
               </button>
               <button
                 onClick={() => { setSelectedFile(null); setPreviewUrl(null); }}
-                className="px-5 py-2 bg-slate-100 text-slate-600 text-sm font-bold rounded-full hover:bg-slate-200 transition"
+                className="px-5 py-2 bg-cool-gray text-slate-muted text-sm font-bold rounded-full hover:bg-slate-200 transition"
               >
                 Cancel
               </button>
@@ -303,14 +303,14 @@ const Profile = () => {
           )}
 
           {isOwner && (
-            <div className="mt-4 bg-white p-4 rounded-xl border border-sky-200 shadow-sm">
+            <div className="mt-4 bg-cool-gray p-4 rounded-xl border border-sky-200 shadow-sm">
               <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-lg font-semibold text-slate-900">Resume</h2>
-                  <p className="text-sm text-slate-500">Upload a PDF resume to display on your profile.</p>
+                  <h2 className="text-lg font-semibold text-charcoal">Resume</h2>
+                  <p className="text-sm text-slate-muted">Upload a PDF resume to display on your profile.</p>
                 </div>
                 <div className="flex items-center gap-3">
-                  <label className="cursor-pointer rounded-full border border-sky-200 bg-white px-4 py-2 text-sm font-semibold text-sky-700 hover:bg-sky-50 transition">
+                  <label className="cursor-pointer rounded-full border border-sky-200 bg-cool-gray px-4 py-2 text-sm font-semibold text-sky-700 hover:bg-sky-50 transition">
                     Choose PDF
                     <input type="file" accept="application/pdf" className="hidden" onChange={handleResumeChange} />
                   </label>
@@ -325,10 +325,10 @@ const Profile = () => {
               </div>
 
               {selectedResume && (
-                <div className="mt-4 rounded-2xl border border-dashed border-slate-300 bg-[#f8fafc] p-4 text-sm text-slate-700">
+                <div className="mt-4 rounded-2xl border border-dashed border-softgray bg-[#f8fafc] p-4 text-sm text-slate-muted">
                   <p className="font-semibold">Selected resume:</p>
                   <p>{selectedResume.name}</p>
-                  <p className="text-xs text-slate-500">PDF preview is available after upload.</p>
+                  <p className="text-xs text-slate-muted">PDF preview is available after upload.</p>
                 </div>
               )}
             </div>
@@ -339,8 +339,8 @@ const Profile = () => {
       
       <main className="max-w-5xl mx-auto px-4 mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="space-y-4">
-          <div className="bg-white rounded-xl border border-sky-200 p-4 shadow-sm">
-            <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+          <div className="bg-cool-gray rounded-xl border border-sky-200 p-4 shadow-sm">
+            <h3 className="text-xs font-bold text-slate-muted uppercase tracking-widest mb-4 flex items-center gap-2">
               <Briefcase size={14} /> Analytics
             </h3>
             <div className="space-y-4">
@@ -350,13 +350,13 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border border-sky-200 p-4 shadow-sm">
+          <div className="bg-cool-gray rounded-xl border border-sky-200 p-4 shadow-sm">
             <div className="flex items-start justify-between gap-4 mb-4">
               <div>
-                <h3 className="text-xs font-bold text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                <h3 className="text-xs font-bold text-slate-muted uppercase tracking-widest flex items-center gap-2">
                   <GraduationCap size={14} /> Education
                 </h3>
-                <p className="text-sm text-slate-500 mt-1">Academic milestones and professional learning history.</p>
+                <p className="text-sm text-slate-muted mt-1">Academic milestones and professional learning history.</p>
               </div>
               {isOwner && (
                 <button
@@ -371,22 +371,22 @@ const Profile = () => {
             <div className="grid gap-3">
               {(Array.isArray(user.education) ? user.education : (user.education || '').split('\n').filter(Boolean)).length > 0 ? (
                 (Array.isArray(user.education) ? user.education : (user.education || '').split('\n').filter(Boolean)).map((item, index) => (
-                  <div key={index} className="rounded-3xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
+                  <div key={index} className="rounded-3xl border border-softgray bg-cool-gray p-4 shadow-sm">
                     {typeof item === 'string' ? (
-                      <p className="text-sm leading-6 text-slate-800">{item}</p>
+                      <p className="text-sm leading-6 text-charcoal">{item}</p>
                     ) : (
                       <>
-                        <p className="text-sm font-semibold text-slate-900">{item.degree || item.institution || 'Education Entry'}</p>
-                        <p className="text-sm text-slate-600 mt-1">{item.institution || item.school}</p>
-                        {item.duration && <p className="text-xs text-slate-500 mt-1">{item.duration}</p>}
-                        {item.details && <p className="text-sm text-slate-700 mt-2">{item.details}</p>}
+                        <p className="text-sm font-semibold text-charcoal">{item.degree || item.institution || 'Education Entry'}</p>
+                        <p className="text-sm text-slate-muted mt-1">{item.institution || item.school}</p>
+                        {item.duration && <p className="text-xs text-slate-muted mt-1">{item.duration}</p>}
+                        {item.details && <p className="text-sm text-slate-muted mt-2">{item.details}</p>}
                       </>
                     )}
                   </div>
                 ))
               ) : (
-                <div className="rounded-3xl border border-dashed border-slate-300 bg-slate-50 p-6">
-                  <p className="text-sm text-slate-500">No education details provided yet. Add your degrees, schools, and academic milestones in the profile editor.</p>
+                <div className="rounded-3xl border border-dashed border-softgray bg-cool-gray p-6">
+                  <p className="text-sm text-slate-muted">No education details provided yet. Add your degrees, schools, and academic milestones in the profile editor.</p>
                 </div>
               )}
             </div>
@@ -394,13 +394,13 @@ const Profile = () => {
         </div>
 
         <div className="md:col-span-2 space-y-6">
-          <div className="bg-white rounded-xl border border-sky-200 p-6 shadow-sm">
+          <div className="bg-cool-gray rounded-xl border border-sky-200 p-6 shadow-sm">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-slate-900">Technical Skills</h2>
+              <h2 className="text-xl font-bold text-charcoal">Technical Skills</h2>
               {isOwner && (
                 <button
                   onClick={() => setIsSkillsModalOpen(true)}
-                  className="p-1.5 hover:bg-slate-100 rounded-full text-sky-700 transition"
+                  className="p-1.5 hover:bg-cool-gray rounded-full text-sky-700 transition"
                   title="Edit Skills"
                 >
                   <PlusCircle size={20} />
@@ -409,13 +409,13 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border border-sky-200 p-6 shadow-sm">
+          <div className="bg-cool-gray rounded-xl border border-sky-200 p-6 shadow-sm">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold text-slate-900 tracking-tight">Resume</h2>
+              <h2 className="text-xl font-bold text-charcoal tracking-tight">Resume</h2>
             </div>
             <div className="rounded-3xl overflow-hidden border border-sky-200 bg-sky-50 min-h-75">
               {user.resume ? (
-                <div className="relative h-87.5 bg-white">
+                <div className="relative h-87.5 bg-cool-gray">
                   <iframe
                     // <-- CRITICAL FIX: Base URL for Resume Iframe
                     src={`${axios.defaults.baseURL || 'http://localhost:5000'}/${user.resume}#toolbar=0&navpanes=0&scrollbar=0&view=FitH`}
@@ -424,22 +424,22 @@ const Profile = () => {
                   />
                 </div>
               ) : (
-                <div className="flex h-87.5 flex-col items-center justify-center gap-3 p-6 text-center text-slate-600">
+                <div className="flex h-87.5 flex-col items-center justify-center gap-3 p-6 text-center text-slate-muted">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-sky-100 text-sky-700">
                     <Briefcase size={28} />
                   </div>
                   <div>
                     <p className="text-lg font-semibold">No resume uploaded yet</p>
-                    <p className="text-sm text-slate-500">Upload your resume to show it directly on your profile.</p>
+                    <p className="text-sm text-slate-muted">Upload your resume to show it directly on your profile.</p>
                   </div>
                 </div>
               )}
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border border-sky-200 p-6 shadow-sm">
+          <div className="bg-cool-gray rounded-xl border border-sky-200 p-6 shadow-sm">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-bold text-slate-900 tracking-tight">Achievements & Experience</h2>
+              <h2 className="text-xl font-bold text-charcoal tracking-tight">Achievements & Experience</h2>
               {isOwner && (
                 <button
                   onClick={() => {setEditingPost(null); setIsModalOpen(true);}}
@@ -463,8 +463,8 @@ const Profile = () => {
                   />
                 ))
               ) : (
-                <div className="py-12 text-center border-2 border-dashed border-gray-100 rounded-xl">
-                  <p className="text-gray-400 font-medium">No professional milestones shared yet.</p>
+                <div className="py-12 text-center border-2 border-dashed border-softgray rounded-xl">
+                  <p className="text-slate-muted font-medium">No professional milestones shared yet.</p>
                 </div>
               )}
             </div>

@@ -54,10 +54,10 @@ const SearchBar = () => {
   return (
     <div className="w-full">
       <form onSubmit={handleSearch} className="relative mb-6">
-        <Search className="absolute left-4 top-3.5 text-slate-400" size={20} />
+        <Search className="absolute left-4 top-3.5 text-slate-muted" size={20} />
         <input
           type="text"
-          className="w-full bg-white text-slate-900 placeholder-slate-400 pl-12 pr-4 py-3 rounded-[2rem] border border-slate-200 focus:outline-none focus:border-[#0f4c81] focus:ring-2 focus:ring-[#0f4c81]/20 transition-all shadow-sm"
+          className="w-full bg-cool-gray text-charcoal placeholder-slate-400 pl-12 pr-4 py-3 rounded-[2rem] border border-softgray focus:outline-none focus:border-[#0f4c81] focus:ring-2 focus:ring-[#0f4c81]/20 transition-all shadow-sm"
           placeholder="Find friends on Profile Hub..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -66,7 +66,7 @@ const SearchBar = () => {
 
       {suggestions.length > 0 && (
         <div className="mt-4 animate-in fade-in duration-500">
-          <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4 px-2">
+          <h4 className="text-xs font-bold text-slate-muted uppercase tracking-wider mb-4 px-2">
             {query.trim() ? 'Matching Profiles' : 'Suggested Creators'}
           </h4>
           
@@ -81,12 +81,12 @@ const SearchBar = () => {
                 <div
                   key={index}
                   onClick={() => handleSuggestionClick(user.username)}
-                  className="flex items-center justify-between p-4 rounded-3xl border border-slate-200 bg-white shadow-sm hover:border-[#0f4c81] hover:shadow-md cursor-pointer transition-all group"
+                  className="flex items-center justify-between p-4 rounded-3xl border border-softgray bg-cool-gray shadow-sm hover:border-[#0f4c81] hover:shadow-md cursor-pointer transition-all group"
                 >
                   <div className="flex items-center gap-4">
                     
                     {/* AVATAR RENDERING */}
-                    <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-200 flex items-center justify-center shrink-0 border border-slate-200">
+                    <div className="w-12 h-12 rounded-full overflow-hidden bg-slate-200 flex items-center justify-center shrink-0 border border-softgray">
                       {hasImage ? (
                         <img 
                           src={imageSource.startsWith('http') ? imageSource : `${import.meta.env.VITE_API_URL}/${imageSource}`} 
@@ -95,20 +95,20 @@ const SearchBar = () => {
                           onError={(e) => {
                             // If the image link is broken, fall back to the grey icon
                             e.target.style.display = 'none';
-                            e.target.parentNode.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-slate-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
+                            e.target.parentNode.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user text-slate-muted"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>';
                           }}
                         />
                       ) : (
-                        <UserIcon size={24} className="text-slate-400" />
+                        <UserIcon size={24} className="text-slate-muted" />
                       )}
                     </div>
 
                     {/* PROFILE INFO RENDERING */}
                     <div className="flex flex-col">
-                      <span className="font-bold text-slate-800 group-hover:text-[#0f4c81] transition-colors">
+                      <span className="font-bold text-charcoal group-hover:text-[#0f4c81] transition-colors">
                         {user.displayName || user.username}
                       </span>
-                      <span className="text-sm text-slate-500 line-clamp-1">
+                      <span className="text-sm text-slate-muted line-clamp-1">
                         {/* If they have a bio, show it. Otherwise, show a professional default. */}
                         {user.bio && user.bio.trim() !== "" 
                           ? user.bio 

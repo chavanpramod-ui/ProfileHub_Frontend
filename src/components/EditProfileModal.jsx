@@ -48,7 +48,7 @@ const EditProfileModal = ({ isOpen, onClose, user, onUpdate }) => {
       <div className="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-[2.5rem] p-8 relative shadow-2xl">
         <button 
           onClick={onClose} 
-          className="absolute top-6 right-6 text-slate-500 hover:text-white transition"
+          className="absolute top-6 right-6 text-slate-muted hover:text-white transition"
         >
           <X size={24} />
         </button>
@@ -60,7 +60,7 @@ const EditProfileModal = ({ isOpen, onClose, user, onUpdate }) => {
         <form onSubmit={handleSubmit} className="space-y-5">
           {/* Full Name Input */}
           <div>
-            <label className="text-[10px] font-black text-slate-500 uppercase ml-1 flex items-center gap-1 tracking-widest">
+            <label className="text-[10px] font-black text-slate-muted uppercase ml-1 flex items-center gap-1 tracking-widest">
               <User size={12}/> Full Name
             </label>
             <input 
@@ -73,7 +73,7 @@ const EditProfileModal = ({ isOpen, onClose, user, onUpdate }) => {
 
           {/* Bio Input */}
           <div>
-            <label className="text-[10px] font-black text-slate-500 uppercase ml-1 flex items-center gap-1 tracking-widest">
+            <label className="text-[10px] font-black text-slate-muted uppercase ml-1 flex items-center gap-1 tracking-widest">
               <GraduationCap size={12}/> Qualification / Bio
             </label>
             <input 
@@ -85,7 +85,7 @@ const EditProfileModal = ({ isOpen, onClose, user, onUpdate }) => {
           </div>
 
           <div>
-            <label className="text-[10px] font-black text-slate-500 uppercase ml-1 flex items-center gap-1 tracking-widest">
+            <label className="text-[10px] font-black text-slate-muted uppercase ml-1 flex items-center gap-1 tracking-widest">
               <GraduationCap size={12}/> Education Details
             </label>
             <textarea
@@ -100,7 +100,7 @@ const EditProfileModal = ({ isOpen, onClose, user, onUpdate }) => {
           <div className="grid grid-cols-2 gap-4">
             {/* Location Input */}
             <div>
-              <label className="text-[10px] font-black text-slate-500 uppercase ml-1 flex items-center gap-1 tracking-widest">
+              <label className="text-[10px] font-black text-slate-muted uppercase ml-1 flex items-center gap-1 tracking-widest">
                 <MapPin size={12}/> Location
               </label>
               <input 
@@ -113,7 +113,7 @@ const EditProfileModal = ({ isOpen, onClose, user, onUpdate }) => {
 
             {/* Email Input */}
             <div>
-              <label className="text-[10px] font-black text-slate-500 uppercase ml-1 flex items-center gap-1 tracking-widest">
+              <label className="text-[10px] font-black text-slate-muted uppercase ml-1 flex items-center gap-1 tracking-widest">
                 <Mail size={12}/> Email Address
               </label>
               <input 
@@ -128,7 +128,7 @@ const EditProfileModal = ({ isOpen, onClose, user, onUpdate }) => {
           {/* Submit Button Linked to Logic */}
           <button 
             type="submit" 
-            className="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-black py-4 rounded-3xl mt-4 flex items-center justify-center gap-2 transition-all shadow-xl shadow-indigo-500/20 active:scale-95"
+            className="w-full bg-deep-blue hover:bg-deep-blue text-white font-black py-4 rounded-3xl mt-4 flex items-center justify-center gap-2 transition-all shadow-xl shadow-indigo-500/20 active:scale-95"
           >
             <Save size={18} /> Update Profile
           </button>

@@ -115,9 +115,9 @@ const Messages = () => {
   if (!currentUsername || !currentUserId) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#eef4ff] p-6">
-        <div className="max-w-xl w-full bg-white rounded-[2rem] p-10 shadow-xl text-center">
-          <h2 className="text-2xl font-bold text-slate-900 mb-3">Login to access your messages</h2>
-          <p className="text-slate-500">Your followed connections will appear here once you sign in.</p>
+        <div className="max-w-xl w-full bg-cool-gray rounded-[2rem] p-10 shadow-xl text-center">
+          <h2 className="text-2xl font-bold text-charcoal mb-3">Login to access your messages</h2>
+          <p className="text-slate-muted">Your followed connections will appear here once you sign in.</p>
         </div>
       </div>
     );
@@ -127,25 +127,25 @@ const Messages = () => {
     <div className="min-h-screen bg-[#eef4ff] py-6">
       <div className="max-w-[1600px] mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-6">
-          <aside className="bg-white rounded-[2rem] border border-slate-200 shadow-[0_24px_60px_-24px_rgba(15,23,42,0.12)] overflow-hidden">
-            <div className="px-6 py-6 bg-[#eff6ff] border-b border-slate-200">
-              <h2 className="text-2xl font-bold text-slate-900">Messages</h2>
-              <p className="text-sm text-slate-500 mt-1">Chat with your followed connections.</p>
+          <aside className="bg-cool-gray rounded-[2rem] border border-softgray shadow-[0_24px_60px_-24px_rgba(15,23,42,0.12)] overflow-hidden">
+            <div className="px-6 py-6 bg-[#eff6ff] border-b border-softgray">
+              <h2 className="text-2xl font-bold text-charcoal">Messages</h2>
+              <p className="text-sm text-slate-muted mt-1">Chat with your followed connections.</p>
               <div className="mt-5 relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-muted" size={18} />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search connections"
-                  className="w-full rounded-full border border-slate-200 bg-white py-3 pl-12 pr-4 text-sm text-slate-700 outline-none focus:border-[#0f4c81] focus:ring-2 focus:ring-[#0f4c81]/20 shadow-sm"
+                  className="w-full rounded-full border border-softgray bg-cool-gray py-3 pl-12 pr-4 text-sm text-slate-muted outline-none focus:border-[#0f4c81] focus:ring-2 focus:ring-[#0f4c81]/20 shadow-sm"
                 />
               </div>
             </div>
 
             <div className="max-h-[calc(100vh-240px)] overflow-y-auto">
               {loading ? (
-                <div className="p-6 text-center text-slate-500">Loading conversations...</div>
+                <div className="p-6 text-center text-slate-muted">Loading conversations...</div>
               ) : filteredContacts.length > 0 ? (
                 filteredContacts.map((contact) => (
                   <button
@@ -166,15 +166,15 @@ const Messages = () => {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-3">
-                        <h3 className="text-sm font-semibold text-slate-900 truncate">{contact.displayName || contact.username}</h3>
-                        <span className="text-[11px] text-slate-400">{contact.time}</span>
+                        <h3 className="text-sm font-semibold text-charcoal truncate">{contact.displayName || contact.username}</h3>
+                        <span className="text-[11px] text-slate-muted">{contact.time}</span>
                       </div>
-                      <p className="text-sm text-slate-500 truncate mt-1">{contact.lastMessage}</p>
+                      <p className="text-sm text-slate-muted truncate mt-1">{contact.lastMessage}</p>
                     </div>
                   </button>
                 ))
               ) : (
-                <div className="p-6 text-center text-slate-500">
+                <div className="p-6 text-center text-slate-muted">
                   {currentUser?.following?.length > 0
                     ? 'No conversations yet. Tap a connection to start messaging.'
                     : 'You are not following anyone yet. Follow someone to message them.'}
@@ -183,7 +183,7 @@ const Messages = () => {
             </div>
           </aside>
 
-          <section className="bg-white rounded-[2rem] border border-slate-200 shadow-[0_24px_60px_-24px_rgba(15,23,42,0.12)] min-h-[70vh] overflow-hidden">
+          <section className="bg-cool-gray rounded-[2rem] border border-softgray shadow-[0_24px_60px_-24px_rgba(15,23,42,0.12)] min-h-[70vh] overflow-hidden">
             {activeContact ? (
               <ChatBox
                 conversationId={conversationId}
@@ -192,11 +192,11 @@ const Messages = () => {
                 onClose={() => setActiveContact(null)}
               />
             ) : (
-              <div className="flex h-full min-h-[32rem] flex-col items-center justify-center px-10 text-center text-slate-500">
+              <div className="flex h-full min-h-[32rem] flex-col items-center justify-center px-10 text-center text-slate-muted">
                 <div className="w-24 h-24 rounded-full bg-[#eff6ff] flex items-center justify-center mb-5 text-3xl text-[#0f4c81]">
                   <UserIcon size={34} />
                 </div>
-                <h2 className="text-2xl font-semibold text-slate-900">Your messages live here</h2>
+                <h2 className="text-2xl font-semibold text-charcoal">Your messages live here</h2>
                 <p className="mt-3 max-w-lg text-sm leading-6">
                   Select a followed connection from the left to open the chat. New conversations can be started immediately.
                 </p>

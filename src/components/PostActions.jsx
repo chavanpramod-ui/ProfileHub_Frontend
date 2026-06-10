@@ -77,21 +77,21 @@ const PostActions = ({ post }) => {
   };
 
   return (
-    <div className="px-6 py-3 border-t border-slate-100 flex items-center justify-between bg-[#eff6ff] rounded-b-[1.75rem]">
+    <div className="px-6 py-3 border-t border-softgray flex items-center justify-between bg-[#eff6ff] rounded-b-[1.75rem]">
       
       {/* Left Side: Like and Comment */}
       <div className="flex items-center gap-6">
         <button 
           onClick={handleLike} 
           className={`flex items-center gap-2 text-sm font-semibold transition-colors ${
-            liked ? 'text-red-500' : 'text-slate-500 hover:text-red-500 hover:bg-red-50'
+            liked ? 'text-red-500' : 'text-slate-muted hover:text-red-500 hover:bg-red-50'
           } px-3 py-1.5 rounded-lg -ml-3`}
         >
           <Heart size={20} className={liked ? 'fill-current' : ''} />
           <span>{likeCount > 0 ? likeCount : 'Like'}</span>
         </button>
 
-        <button onClick={handleComment} className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-[#0f4c81] hover:bg-[#eff6ff] px-3 py-1.5 rounded-lg transition-colors">
+        <button onClick={handleComment} className="flex items-center gap-2 text-sm font-semibold text-slate-muted hover:text-[#0f4c81] hover:bg-[#eff6ff] px-3 py-1.5 rounded-lg transition-colors">
           <MessageSquare size={20} />
           <span>Comment</span>
         </button>
@@ -100,7 +100,7 @@ const PostActions = ({ post }) => {
       {/* Right Side: Share */}
       <button 
         onClick={handleShare}
-        className="flex items-center gap-2 text-sm font-semibold text-slate-500 hover:text-[#0f4c81] hover:bg-[#eff6ff] px-3 py-1.5 rounded-lg transition-colors -mr-3"
+        className="flex items-center gap-2 text-sm font-semibold text-slate-muted hover:text-[#0f4c81] hover:bg-[#eff6ff] px-3 py-1.5 rounded-lg transition-colors -mr-3"
       >
         <Share2 size={20} />
         <span className="hidden sm:inline">Share</span>

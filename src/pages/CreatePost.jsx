@@ -67,14 +67,14 @@ const CreatePost = () => {
   return (
     <div className="min-h-screen bg-[#eef4ff] py-12 px-4">
       <div className="max-w-2xl mx-auto">
-        <h2 className="text-2xl font-black text-slate-900 mb-6 tracking-tight">Create a New Post</h2>
+        <h2 className="text-2xl font-black text-charcoal mb-6 tracking-tight">Create a New Post</h2>
 
         {/* --- NEW STYLED CARD --- */}
-        <div className="bg-white rounded-4xl shadow-[0_24px_60px_-24px_rgba(15,23,42,0.18)] border border-slate-200 overflow-hidden transition-all hover:shadow-[0_28px_80px_-40px_rgba(15,23,42,0.18)]">
+        <div className="bg-cool-gray rounded-4xl shadow-[0_24px_60px_-24px_rgba(15,23,42,0.18)] border border-softgray overflow-hidden transition-all hover:shadow-[0_28px_80px_-40px_rgba(15,23,42,0.18)]">
           
           {/* Top Banner Context */}
-          <div className="px-6 py-5 bg-linear-to-r from-[#0f4c81] to-[#1663b4] border-b border-slate-200 flex items-center gap-3 text-white">
-            <div className="w-11 h-11 rounded-full bg-white/15 flex items-center justify-center">
+          <div className="px-6 py-5 bg-linear-to-r from-[#0f4c81] to-[#1663b4] border-b border-softgray flex items-center gap-3 text-white">
+            <div className="w-11 h-11 rounded-full bg-cool-gray/15 flex items-center justify-center">
               <UserCircle2 size={24} />
             </div>
             <div>
@@ -93,7 +93,7 @@ const CreatePost = () => {
                 <input
                   type="text"
                   required
-                  className="w-full text-2xl font-bold text-slate-800 placeholder-slate-300 border-none focus:ring-0 px-0"
+                  className="w-full text-2xl font-bold text-charcoal placeholder-slate-300 border-none focus:ring-0 px-0"
                   placeholder="Achievement Title (e.g., Earned Java Certificate)"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
@@ -101,11 +101,11 @@ const CreatePost = () => {
               </div>
 
               {/* Organization Input with Icon */}
-              <div className="flex items-center gap-3 text-slate-500 bg-[#f8fafc] px-4 py-2.5 rounded-xl border border-slate-200">
+              <div className="flex items-center gap-3 text-slate-muted bg-[#f8fafc] px-4 py-2.5 rounded-xl border border-softgray">
                 <Award size={18} className="text-[#0f4c81]" />
                 <input
                   type="text"
-                  className="w-full text-sm font-medium bg-transparent border-none focus:ring-0 px-0 placeholder-slate-400 text-slate-700"
+                  className="w-full text-sm font-medium bg-transparent border-none focus:ring-0 px-0 placeholder-slate-400 text-slate-muted"
                   placeholder="Issuing Organization (e.g., Apna College, Coursera)"
                   value={provider}
                   onChange={(e) => setProvider(e.target.value)}
@@ -116,7 +116,7 @@ const CreatePost = () => {
               <div>
                 <textarea
                   required
-                  className="w-full min-h-35 text-lg leading-relaxed text-slate-700 placeholder-slate-400 border-none focus:ring-0 resize-none px-0 mt-2"
+                  className="w-full min-h-35 text-lg leading-relaxed text-slate-muted placeholder-slate-400 border-none focus:ring-0 resize-none px-0 mt-2"
                   placeholder="What do you want to talk about? Share your experience..."
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
@@ -125,7 +125,7 @@ const CreatePost = () => {
 
               {/* Image Preview Area */}
               {preview && (
-                <div className="relative mt-4 rounded-xl overflow-hidden border-2 border-slate-200 bg-white group">
+                <div className="relative mt-4 rounded-xl overflow-hidden border-2 border-softgray bg-cool-gray group">
                   <img src={preview} alt="Upload preview" className="w-full h-auto max-h-100 object-contain transition-transform duration-300 group-hover:scale-[1.02]" />
                   <button
                     type="button"
@@ -139,7 +139,7 @@ const CreatePost = () => {
             </div>
 
             {/* Action Footer */}
-            <div className="px-6 py-4 bg-[#eff6ff] border-t border-slate-100 flex items-center justify-between">
+            <div className="px-6 py-4 bg-[#eff6ff] border-t border-softgray flex items-center justify-between">
               
               {/* Image Upload Button */}
               <div>
@@ -152,7 +152,7 @@ const CreatePost = () => {
                 />
                 <label 
                   htmlFor="image-upload"
-                  className="flex items-center gap-2 cursor-pointer text-slate-600 hover:text-[#0f4c81] hover:bg-[#eff6ff] px-4 py-2.5 rounded-full transition-all font-semibold text-sm"
+                  className="flex items-center gap-2 cursor-pointer text-slate-muted hover:text-[#0f4c81] hover:bg-[#eff6ff] px-4 py-2.5 rounded-full transition-all font-semibold text-sm"
                 >
                   <ImageIcon size={20} className={preview ? "text-[#0f4c81]" : ""} />
                   <span>{preview ? 'Change Image' : 'Add Image'}</span>
@@ -165,7 +165,7 @@ const CreatePost = () => {
                 disabled={loading || !isFormValid}
                 className={`flex items-center gap-2 px-7 py-2.5 rounded-full font-bold text-sm transition-all duration-200 shadow-sm ${
                   !isFormValid || loading
-                    ? 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                    ? 'bg-slate-200 text-slate-muted cursor-not-allowed'
                     : 'bg-[#0f4c81] text-white hover:bg-[#113d66] hover:shadow-md active:scale-[0.98]'
                 }`}
               >

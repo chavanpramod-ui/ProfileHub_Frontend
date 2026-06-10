@@ -59,10 +59,10 @@ const Sidebar = () => {
               className={`w-full flex items-center gap-4 px-4 py-4 rounded-3xl transition-all duration-200 ${
                 active 
                   ? 'bg-[#112c56] text-white font-semibold shadow-lg' 
-                  : 'text-slate-300 hover:bg-white/10 hover:text-white'
+                  : 'text-slate-300 hover:bg-cool-gray/10 hover:text-white'
               }`}
             >
-              <Icon size={24} className={active ? 'text-white' : 'text-slate-400'} />
+              <Icon size={24} className={active ? 'text-white' : 'text-slate-muted'} />
               <span className="text-lg">{item.name}</span>
             </button>
           );
@@ -73,7 +73,7 @@ const Sidebar = () => {
       <div className="p-5 border-t border-slate-900">
         <button 
           onClick={handleLogout}
-          className="w-full flex items-center gap-4 px-4 py-4 text-[#f97316] hover:bg-white/10 rounded-3xl transition-all font-semibold"
+          className="w-full flex items-center gap-4 px-4 py-4 text-[#f97316] hover:bg-cool-gray/10 rounded-3xl transition-all font-semibold"
         >
           <LogOut size={24} />
           <span className="text-lg">Logout</span>

@@ -41,7 +41,7 @@ const Notifications = () => {
     switch(type) {
       case 'like': return <Heart className="text-red-500" fill="currentColor" size={20} />;
       case 'comment': return <MessageSquare className="text-[#0f4c81]" fill="currentColor" size={20} />;
-      case 'follow': return <UserPlus className="text-green-500" size={20} />;
+      case 'follow': return <UserPlus className="text-teal" size={20} />;
       case 'share': return <Share2 className="text-indigo-500" size={20} />;
       default: return <Bell className="text-indigo-500" size={20} />;
     }
@@ -61,7 +61,7 @@ const Notifications = () => {
         
         {/* Header */}
         <div className="rounded-t-[2rem] bg-gradient-to-r from-[#0f4c81] to-[#1463b9] p-6 shadow-lg flex items-center gap-3 mb-2 text-white">
-          <div className="bg-white/10 p-2 rounded-2xl">
+          <div className="bg-cool-gray/10 p-2 rounded-2xl">
             <Bell className="text-white" size={24} />
           </div>
           <div>
@@ -71,13 +71,13 @@ const Notifications = () => {
         </div>
 
         {/* Notifications List */}
-        <div className="bg-white rounded-b-[2rem] border border-slate-200 shadow-[0_24px_60px_-24px_rgba(15,23,42,0.12)] overflow-hidden">
+        <div className="bg-cool-gray rounded-b-[2rem] border border-softgray shadow-[0_24px_60px_-24px_rgba(15,23,42,0.12)] overflow-hidden">
           {notifications.length > 0 ? (
             notifications.map((notif, index) => (
               <div 
                 key={notif._id || index}
                 onClick={() => navigate(`/${notif.senderUsername || notif.senderName}`)}
-                className={`flex items-start gap-4 p-5 border-b border-slate-100 cursor-pointer transition-all hover:bg-[#eff6ff] ${
+                className={`flex items-start gap-4 p-5 border-b border-softgray cursor-pointer transition-all hover:bg-[#eff6ff] ${
                   !notif.isRead ? 'bg-[#eff6ff]/40' : ''
                 }`}
               >
@@ -86,11 +86,11 @@ const Notifications = () => {
                 </div>
                 
                 <div className="flex-1">
-                  <p className="text-slate-800">
-                    <span className="font-bold text-slate-900 mr-1">{notif.senderName || notif.senderUsername || 'Someone'}</span>
+                  <p className="text-charcoal">
+                    <span className="font-bold text-charcoal mr-1">{notif.senderName || notif.senderUsername || 'Someone'}</span>
                     {notif.message}
                   </p>
-                  <p className="text-xs text-slate-400 font-semibold mt-1 uppercase tracking-wider">
+                  <p className="text-xs text-slate-muted font-semibold mt-1 uppercase tracking-wider">
                     {new Date(notif.date).toLocaleDateString()}
                   </p>
                 </div>
@@ -103,8 +103,8 @@ const Notifications = () => {
           ) : (
             <div className="py-16 flex flex-col items-center justify-center text-center">
               <CheckCircle2 className="text-gray-300 mb-3" size={48} />
-              <h3 className="text-lg font-bold text-slate-700">You're all caught up!</h3>
-              <p className="text-slate-500 text-sm mt-1">When someone interacts with you, it will appear here.</p>
+              <h3 className="text-lg font-bold text-slate-muted">You're all caught up!</h3>
+              <p className="text-slate-muted text-sm mt-1">When someone interacts with you, it will appear here.</p>
             </div>
           )}
         </div>

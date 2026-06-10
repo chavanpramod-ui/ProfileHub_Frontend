@@ -18,25 +18,25 @@ const StatsCard = ({ title, icon: Icon, value, label, color, link }) => {
           </div>
           
           {/* Professional Source Tag */}
-          <div className="flex items-center gap-1 px-2 py-1 bg-slate-100 rounded border border-slate-200">
-            <span className="text-slate-400 text-[9px] font-bold uppercase tracking-wider">Source</span>
-            <ExternalLink size={10} className="text-slate-400 group-hover:text-sky-600" />
+          <div className="flex items-center gap-1 px-2 py-1 bg-cool-gray rounded border border-softgray">
+            <span className="text-slate-muted text-[9px] font-bold uppercase tracking-wider">Source</span>
+            <ExternalLink size={10} className="text-slate-muted group-hover:text-sky-600" />
           </div>
         </div>
 
         <div className="mt-4">
-          <h3 className="text-gray-500 text-[10px] font-bold uppercase tracking-widest mb-1">
+          <h3 className="text-slate-muted text-[10px] font-bold uppercase tracking-widest mb-1">
             {title}
           </h3>
           
           <div className="flex items-baseline gap-2">
             {/* High-Contrast Typography */}
-            <p className="text-xl font-bold text-slate-900 group-hover:text-sky-700 transition-colors duration-300">
+            <p className="text-xl font-bold text-charcoal group-hover:text-sky-700 transition-colors duration-300">
               {value || "View Profile"}
             </p>
           </div>
           
-          <p className="text-slate-500 text-xs mt-0.5 font-medium italic">
+          <p className="text-slate-muted text-xs mt-0.5 font-medium italic">
             {label}
           </p>
         </div>

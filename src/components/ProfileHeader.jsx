@@ -19,7 +19,7 @@ const ProfileHeader = ({ user, onEditLinks, onEditProfile, onFollow, onViewFollo
 
   return (
     <div className="max-w-5xl mx-auto px-4">
-      <div className="relative bg-white border border-sky-200 rounded-[2rem] shadow-[0_35px_60px_-40px_rgba(56,189,248,0.16)] overflow-hidden">
+      <div className="relative bg-cool-gray border border-sky-200 rounded-[2rem] shadow-[0_35px_60px_-40px_rgba(56,189,248,0.16)] overflow-hidden">
         <div className="h-32 md:h-44 bg-gradient-to-br from-sky-600 via-sky-700 to-blue-600 border-b border-sky-200" />
 
         <div className="px-6 md:px-10 pb-8 -mt-12 md:-mt-16">
@@ -63,13 +63,13 @@ const ProfileHeader = ({ user, onEditLinks, onEditProfile, onFollow, onViewFollo
                 <>
                   <button 
                     onClick={onEditProfile}
-                    className="flex-1 md:flex-none px-6 py-2 bg-white border border-sky-200 text-sky-700 rounded-full font-bold hover:bg-sky-50 transition-all active:scale-95"
+                    className="flex-1 md:flex-none px-6 py-2 bg-cool-gray border border-sky-200 text-sky-700 rounded-full font-bold hover:bg-sky-50 transition-all active:scale-95"
                   >
                     Edit Hub
                   </button>
                   <button 
                     onClick={onEditLinks}
-                    className="p-2 bg-slate-100 text-slate-600 rounded-full hover:bg-slate-200 transition-colors"
+                    className="p-2 bg-cool-gray text-slate-muted rounded-full hover:bg-slate-200 transition-colors"
                     title="Connect Profiles"
                   >
                     <Settings size={20} />
@@ -80,7 +80,7 @@ const ProfileHeader = ({ user, onEditLinks, onEditProfile, onFollow, onViewFollo
                   {/* Message Button for visitors */}
                   <button 
                     onClick={handleMessageClick}
-                    className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-2 bg-white border border-sky-200 text-sky-700 rounded-full font-bold hover:bg-sky-50 transition-all active:scale-95"
+                    className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-2 bg-cool-gray border border-sky-200 text-sky-700 rounded-full font-bold hover:bg-sky-50 transition-all active:scale-95"
                   >
                     <MessageSquare size={18} />
                     Message
@@ -90,7 +90,7 @@ const ProfileHeader = ({ user, onEditLinks, onEditProfile, onFollow, onViewFollo
                     onClick={onFollow}
                     className={`flex-1 md:flex-none px-8 py-2 rounded-full font-bold transition-all active:scale-95 ${
                       followed 
-                      ? 'bg-slate-100 text-slate-700 border border-slate-200' 
+                      ? 'bg-cool-gray text-slate-muted border border-softgray' 
                       : 'bg-sky-600 text-white hover:bg-sky-700'
                     }`}
                   >
@@ -103,7 +103,7 @@ const ProfileHeader = ({ user, onEditLinks, onEditProfile, onFollow, onViewFollo
 
           <div className="mt-6 text-left">
             <div className="flex items-center gap-2">
-              <h1 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight">
+              <h1 className="text-2xl md:text-3xl font-bold text-charcoal tracking-tight">
                 {user.displayName || user.username}
               </h1>
               <div className="bg-sky-100 text-sky-700 p-1 rounded-full" title="Verified Professional">
@@ -111,11 +111,11 @@ const ProfileHeader = ({ user, onEditLinks, onEditProfile, onFollow, onViewFollo
               </div>
             </div>
 
-            <p className="text-md md:text-lg text-slate-600 font-medium mt-1">
+            <p className="text-md md:text-lg text-slate-muted font-medium mt-1">
               {user.bio || "MERN STACK DEVELOPER"}
             </p>
             
-            <div className="mt-4 flex flex-wrap items-center gap-y-2 gap-x-6 text-sm text-slate-500 font-medium">
+            <div className="mt-4 flex flex-wrap items-center gap-y-2 gap-x-6 text-sm text-slate-muted font-medium">
               <div className="flex items-center gap-1.5">
                 <MapPin size={16} className="text-sky-400" />
                 <span>{user.location || "Nashik, MH"}</span>
@@ -126,7 +126,7 @@ const ProfileHeader = ({ user, onEditLinks, onEditProfile, onFollow, onViewFollo
                 className="flex items-center gap-1.5 hover:text-sky-700 transition-colors"
               >
                 <Users size={16} className="text-sky-400" />
-                <span className="font-bold text-slate-700">{user.followers?.length || 0}</span>
+                <span className="font-bold text-slate-muted">{user.followers?.length || 0}</span>
                 <span className="ml-1">connections</span>
               </button>
 

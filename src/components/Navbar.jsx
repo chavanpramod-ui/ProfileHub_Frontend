@@ -28,7 +28,7 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="bg-white/95 backdrop-blur-xl border-t border-slate-200 px-4 py-3 flex items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.05)] pb-safe">
+    <div className="bg-cool-gray/95 backdrop-blur-xl border-t border-softgray px-4 py-3 flex items-center justify-between shadow-[0_-10px_40px_rgba(0,0,0,0.05)] pb-safe">
       
       {/* Map through the standard navigation items */}
       {navItems.map((item) => {
@@ -41,7 +41,7 @@ const Navbar = () => {
             key={item.label}
             onClick={() => navigate(item.path)}
             className={`flex flex-col items-center p-2 transition-colors ${
-              isActive ? 'text-sky-600' : 'text-slate-400 hover:text-sky-500'
+              isActive ? 'text-sky-600' : 'text-slate-muted hover:text-sky-500'
             }`}
           >
             <Icon size={24} strokeWidth={isActive ? 2.5 : 2} />

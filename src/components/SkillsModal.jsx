@@ -38,10 +38,10 @@ const SkillsModal = ({ isOpen, onClose, userId, currentSkills, onUpdate }) => {
 
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-300 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl w-full max-w-md shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
-        <div className="flex justify-between items-center p-6 border-b border-gray-100">
-          <h2 className="text-xl font-bold text-slate-900">Manage Technical Skills</h2>
-          <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full text-gray-400">
+      <div className="bg-cool-gray rounded-2xl w-full max-w-md shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+        <div className="flex justify-between items-center p-6 border-b border-softgray">
+          <h2 className="text-xl font-bold text-charcoal">Manage Technical Skills</h2>
+          <button onClick={onClose} className="p-2 hover:bg-cool-gray rounded-full text-slate-muted">
             <X size={20} />
           </button>
         </div>
@@ -52,7 +52,7 @@ const SkillsModal = ({ isOpen, onClose, userId, currentSkills, onUpdate }) => {
               value={newSkill}
               onChange={(e) => setNewSkill(e.target.value)}
               placeholder="e.g. React, Node.js, Java"
-              className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[#0f4c81]"
+              className="flex-1 bg-cool-gray border border-softgray rounded-xl px-4 py-2 outline-none focus:ring-2 focus:ring-[#0f4c81]"
             />
             <button onClick={handleAddSkill} className="bg-[#0f4c81] text-white p-2 rounded-xl hover:bg-[#113d66] transition">
               <Plus size={24} />
@@ -60,7 +60,7 @@ const SkillsModal = ({ isOpen, onClose, userId, currentSkills, onUpdate }) => {
           </div>
           <div className="flex flex-wrap gap-2 mb-6 min-h-12 max-h-40 overflow-y-auto">
             {skills.map((skill, i) => (
-              <span key={i} className="flex items-center gap-2 bg-slate-100 px-3 py-1.5 rounded-full text-xs font-bold text-slate-700">
+              <span key={i} className="flex items-center gap-2 bg-cool-gray px-3 py-1.5 rounded-full text-xs font-bold text-slate-muted">
                 {skill}
                 <button onClick={() => handleRemoveSkill(skill)} className="hover:text-red-500">
                   <X size={14} />

@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+@theme {
+  --color-light-frost: #F7F9FC;
+  --color-cool-gray: #E8EEF5;
+  --color-deep-blue: #185FA5;
+  --color-electric-blue: #378ADD;
+  --color-teal: #1D9E75;
+  --color-charcoal: #2C2C2A;
+  --color-slate-muted: #5F5E5A;
+  --color-softgray: #D3D1C7;
+}
+
+body {
+  background-color: var(--color-light-frost);
+  color: var(--color-charcoal);
+}

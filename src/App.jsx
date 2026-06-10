@@ -25,7 +25,7 @@ const AppLayout = ({ children }) => {
   const shouldShowSidebar = !hideSidebarRoutes.includes(location.pathname);
 
   return (
-    <div className="bg-gradient-to-br from-[#f4f7fc] via-[#eef4ff] to-[#f8fbff] min-h-screen text-slate-900 flex flex-col md:flex">
+    <div className="bg-light-frost min-h-screen text-charcoal flex flex-col md:flex">
       {/* Desktop Sidebar - hidden on mobile */}
       {shouldShowSidebar && <div className="hidden md:block">
         <Sidebar />
@@ -65,7 +65,7 @@ function App() {
           
           {/* 404 Page */}
           <Route path="*" element={
-            <div className="h-screen flex items-center justify-center px-4 text-slate-500 font-black uppercase tracking-widest text-center">
+            <div className="h-screen flex items-center justify-center px-4 text-slate-muted font-black uppercase tracking-widest text-center">
               Hub Not Found
             </div>
           } />
