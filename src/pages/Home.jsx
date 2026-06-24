@@ -12,19 +12,23 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState(''); 
   const navigate = useNavigate();
 
+  const [isLongLoad, setIsLongLoad] = useState(false);
+
   useEffect(() => {
+    const timer = setTimeout(() => setIsLongLoad(true), 3000);
     const fetchFeed = async () => {
       try {
-        // <-- CRITICAL FIX: Direct axios relative path
         const res = await axios.get('/api/users/achievements/feed');
         setFeed(res.data);
       } catch (err) {
         console.error("Feed error:", err);
       } finally {
+        clearTimeout(timer);
         setLoading(false);
       }
     };
     fetchFeed();
+    return () => clearTimeout(timer);
   }, []);
 
   const profileImageUrl = (author) => {
@@ -82,6 +86,11 @@ const Home = () => {
           <div className="flex flex-col items-center justify-center py-20 text-sky-700">
             <Loader2 className="animate-spin mb-4 text-sky-600" size={40} />
             <span className="font-bold">Syncing Hub Updates...</span>
+            {isLongLoad && (
+              <span className="text-xs text-slate-muted mt-3 max-w-xs text-center">
+                Waking up the backend server. This usually takes about 50 seconds on the free tier. Please hold on!
+              </span>
+            )}
           </div>
         ) : filteredFeed.length > 0 ? (
           <div className="space-y-4">
